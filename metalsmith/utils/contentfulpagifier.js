@@ -25,7 +25,7 @@ function pageify(entryRaw, i18n){
         }
         console.log(fields.tags)
         if (fields.tags && fields.tags[0] === "integrations") {
-            console.log("In the integrations conditional")
+            console.log(`In the integrations conditional: ${fields.title}`)
             file = {
                 title: fields.title,
                 highlights: fields.highlights,
@@ -38,6 +38,7 @@ function pageify(entryRaw, i18n){
                 fromContentful: true
             };
         } else {
+            console.log(`in the other conditional: ${fields.title}`)
             file = {
                 title: fields.title,
                 highlights: fields.highlights,
@@ -49,7 +50,7 @@ function pageify(entryRaw, i18n){
                 fields: fields,
                 id: entry.sys.id,
                 sectionType: metalsmithSection,
-                template: "hasTableOfContents.html"
+                template: "intergrationLander.html"
             };
         }
             
