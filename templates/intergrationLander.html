@@ -20,35 +20,43 @@
 
   <div class="span7">
 
-    <h3>Key features</h3>
-
-    <ul>
-    {% for feature in keyFeatures %}
-    <li>{{feature | markdown | safe }}</li>
-    {% endfor %}
-    </ul>
+    {% if !fromContentful %}
+      <h3>Key features</h3>
+  
+      <ul>
+      {% for feature in keyFeatures %}
+      <li>{{feature | markdown | safe }}</li>
+      {% endfor %}
+      </ul>
+      
+      <h3>{{integrationName}} Referral Software Integration Questions?</h3>
+      
+      <input type="button" class="btn" onclick="location.href='https://www.referralsaasquatch.com/integration-inquiry/?integration={{integrationName}}';" value="Find out more" />
+  
+    </div>
+  
+    <div class="span5 well">
+      <h3>{{integrationName}} Integration Resources</h3>
+      <ul>
+      {% for info in moreInfo %}
+      <li>{{ info | markdown | safe }}</li>
+      {% endfor %}
+      </ul>
+      
+      <h3>Additional Help Center Articles</h3>
+      <ul>
+        <li><a href="/success/intro/">Getting Started with SaaSquatch</a></li>
+        <li><a href="/guides/morp-install/">Quickstart Install Guide</a></li>
+        <li><a href="/success/core-topics/">How Referral Programs Work</a></li>
+        <li><a href="/success/using-referral-saasquatch/">Using the SaaSquatch Portal</a></li>
+      </ul>
+    {% endif %}
     
-    <h3>{{integrationName}} Referral Software Integration Questions?</h3>
+    {% if fromContentful %}
     
-    <input type="button" class="btn" onclick="location.href='https://www.referralsaasquatch.com/integration-inquiry/?integration={{integrationName}}';" value="Find out more" />
-
-  </div>
-
-  <div class="span5 well">
-    <h3>{{integrationName}} Integration Resources</h3>
-    <ul>
-    {% for info in moreInfo %}
-    <li>{{ info | markdown | safe }}</li>
-    {% endfor %}
-    </ul>
+      {{ markdownToc }}
     
-    <h3>Additional Help Center Articles</h3>
-    <ul>
-      <li><a href="/success/intro/">Getting Started with SaaSquatch</a></li>
-      <li><a href="/guides/morp-install/">Quickstart Install Guide</a></li>
-      <li><a href="/success/core-topics/">How Referral Programs Work</a></li>
-      <li><a href="/success/using-referral-saasquatch/">Using the SaaSquatch Portal</a></li>
-    </ul>
+    {% endif %}
   </div>
 
 </div>

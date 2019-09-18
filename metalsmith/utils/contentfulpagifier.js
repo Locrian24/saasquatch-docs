@@ -23,19 +23,37 @@ function pageify(entryRaw, i18n){
         if(!metalsmithSection){
             throw new Error(`Missing or undefined section type. ${JSON.stringify(contentfulSection)} mapped to ${metalsmithSection}`);
         }
-        file = {
-            title: fields.title,
-            highlights: fields.highlights,
-            contents: fields.content,
-            markdownToc: markdownToc(fields.content),
-            tags: fields.tags,
-            slug: fields.slug,
-             
-            fields: fields,
-            id: entry.sys.id,
-            sectionType: metalsmithSection,
-            template: "hasTableOfContents.html"
-        };
+        console.log(fields.tags)
+        if (fields.tags && fields.tags[0] === "integrations") {
+            console.log("In the integrations conditional")
+            file = {
+                title: fields.title,
+                highlights: fields.highlights,
+                contents: fields.content,
+                markdownToc: markdownToc(fields.content),
+                tags: fields.tags,
+                slug: fields.slug,
+                
+                template: "intergrationLander.html",
+                fromContentful: true
+            };
+        } else {
+            file = {
+                title: fields.title,
+                highlights: fields.highlights,
+                contents: fields.content,
+                markdownToc: markdownToc(fields.content),
+                tags: fields.tags,
+                slug: fields.slug,
+                 
+                fields: fields,
+                id: entry.sys.id,
+                sectionType: metalsmithSection,
+                template: "hasTableOfContents.html"
+            };
+        }
+            
+
         if(fields.coverImage){
             let coverFields = resolveI18n(fields.coverImage.fields);
             file.coverImage = {
